@@ -99,7 +99,7 @@ macro_rules! deserialize_x {
 		{
 			self.value.$fn_name(visitor)
 		}
-	}
+	};
 }
 
 // Our Value type has some context, which we ignore, and some definition, whose deserializer
@@ -1213,13 +1213,13 @@ mod test {
 	fn de_bitvec() {
 		use bitvec::{bitvec, order::Lsb0};
 
-		let val = Value::bit_sequence(bitvec![Lsb0, u8; 0, 1, 1, 0, 1, 0, 1, 0]);
-		assert_eq!(BitSequence::deserialize(val), Ok(bitvec![Lsb0, u8; 0, 1, 1, 0, 1, 0, 1, 0]));
+		let val = Value::bit_sequence(bitvec![u8, Lsb0; 0, 1, 1, 0, 1, 0, 1, 0]);
+		assert_eq!(BitSequence::deserialize(val), Ok(bitvec![u8, Lsb0; 0, 1, 1, 0, 1, 0, 1, 0]));
 
-		let val = Value::bit_sequence(bitvec![Lsb0, u8; 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0]);
+		let val = Value::bit_sequence(bitvec![u8, Lsb0; 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0]);
 		assert_eq!(
 			BitSequence::deserialize(val),
-			Ok(bitvec![Lsb0, u8; 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0])
+			Ok(bitvec![u8, Lsb0; 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0])
 		);
 	}
 
