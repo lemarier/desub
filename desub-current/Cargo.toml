@@ -19,7 +19,7 @@ serde_json = { version = "1", features = ["preserve_order"] }
 codec = { version = "3", package = "parity-scale-codec", features = ["bit-vec"] }
 hex = "0.4.3"
 derive_more = "0.99.16"
-scale-info = { version = "2.1.2", features = ["bit-vec", "derive"] }
+scale-info = { version = "2.1.1", features = ["bit-vec", "derive"] }
 bitvec = { version = "1", features = ["serde", "alloc"] }
 desub-common = { version = "0.1.0", path = "../desub-common" }
 
